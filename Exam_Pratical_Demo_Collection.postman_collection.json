@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "64f53ea0-0480-45bd-85ff-4d4c5f60afda",
+		"name": "Exam_Pratical_Demo_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8e2881c0-39ac-476c-a97d-c5b54cc885fb",
+						"exec": [
+							"pm.test(\" The status code should be 200 for this request as mentioned in Swagger document\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type response in the header should be application/json for this request as mentioned in Swagger document\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/healthcheck",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All School List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "70901b8a-78fe-4f77-b180-5aa804fff6c5",
+						"exec": [
+							"pm.test(\" The status code should be 200 for this request as mentioned in Swagger document\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type response in the header should be application/json for this request as mentioned in Swagger document\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/admin/getSchool",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"getSchool"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Department List By School ID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6b8daf7a-7f9f-48f5-8995-64d4cfe09748",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ceed026-9b5a-401a-9b74-d9e28e5d772d",
+						"exec": [
+							"pm.test(\" The status code should be 200 for this request as mentioned in Swagger document\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Final Year\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"school_id\":2}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/admin/getDepartment",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"getDepartment"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "To Add New Exam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f12a7a60-c0af-4b11-b720-9e4113cedf6c",
+						"exec": [
+							"pm.test(\" The status code should be 200 for this request as mentioned in Swagger document\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type response in the header should be application/json for this request as mentioned in Swagger document\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"test_name\": \"string\",\r\n  \"description\": \"string\",\r\n  \"show_desc\": 0,\r\n  \"is_enable\": 0,\r\n  \"open\": \"string\",\r\n  \"close\": \"string\",\r\n  \"limit\": 0,\r\n  \"expires\": 0,\r\n  \"is_standard\": 0,\r\n  \"passing\": 0,\r\n  \"attempts\": 0,\r\n  \"grading_method\": 0,\r\n  \"qpa\": 0,\r\n  \"navigation\": true,\r\n  \"shuffle_ques\": true,\r\n  \"shuffle_ans\": true,\r\n  \"order\": true,\r\n  \"question_grade\": 0,\r\n  \"after_attempt\": {},\r\n  \"after_exam\": {},\r\n  \"created_by\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/admin/add_test",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"add_test"
+					],
+					"query": [
+						{
+							"key": "content type",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "To Update Exam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a3e52c34-ed33-472e-9466-b78ad5641723",
+						"exec": [
+							"pm.test(\" The status code should be 200 for this request as mentioned in Swagger document\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type response in the header should be application/json for this request as mentioned in Swagger document\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"test_name\": \"string\",\r\n  \"description\": \"string\",\r\n  \"show_desc\": 0,\r\n  \"is_enable\": 0,\r\n  \"open\": \"string\",\r\n  \"close\": \"string\",\r\n  \"limit\": 0,\r\n  \"expires\": 0,\r\n  \"is_standard\": 0,\r\n  \"passing\": 0,\r\n  \"attempts\": 0,\r\n  \"grading_method\": 0,\r\n  \"qpa\": 0,\r\n  \"navigation\": true,\r\n  \"shuffle_ques\": true,\r\n  \"shuffle_ans\": true,\r\n  \"order\": true,\r\n  \"question_grade\": 0,\r\n  \"after_attempt\": {},\r\n  \"after_exam\": {},\r\n  \"created_by\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/admin/update_test",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"update_test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "To Delete Exam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b17e6d9-4002-43fc-879f-4448ea55f26d",
+						"exec": [
+							"pm.test(\" The status code should be 200 for this request as mentioned in Swagger document\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type response in the header should be application/json for this request as mentioned in Swagger document\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The reponse body should have a message: Deleted  successfully\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Deleted  successfully\");\r",
+							"});\r",
+							"  "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"_id\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/admin/delete_test",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"delete_test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "To Get All Exams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cc76d14-9d05-4f3e-a2b5-ed21275927ca",
+						"exec": [
+							"pm.test(\" The status code should be 200 for this request as mentioned in Swagger document\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type response in the header should be application/json for this request as mentioned in Swagger document\", () => {\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/admin/courses_test",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"admin",
+						"courses_test"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
